@@ -7,7 +7,7 @@ import githubFork from "@/assets/github_fork.png";
     <router-link class="router-link" to="/temtem">Temtem</router-link>
   </nav>
   <RouterView />
-  <a href="https://github.com/Robbna/temdex">
+  <a href="https://github.com/Robbna/poketem">
     <img class="github-fork" :src="githubFork" />
   </a>
 </template>
