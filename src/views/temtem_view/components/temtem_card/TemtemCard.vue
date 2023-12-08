@@ -21,7 +21,7 @@ const handleLumaButton = () => {
   <div class="temtem-card">
     <div>
       <h1 class="temtem-name">{{ props.temtem.name }}</h1>
-      <h3 v-if="props.showLevel"> → + {{ props.level }} lvl →</h3>
+      <h3 v-if="props.showLevel">→ + {{ props.level }} lvl →</h3>
       <h4 class="temtem-name"># {{ props.temtem.number }}</h4>
     </div>
     <div>
@@ -105,8 +105,7 @@ h4 {
   align-items: center;
   justify-content: space-between;
 
-  /* max-width: 300px; */
-  width: 100%;
+  max-width: 300px;
   border-radius: 14px;
   padding: 1rem;
   box-shadow:
