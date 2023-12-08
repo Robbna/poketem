@@ -99,8 +99,11 @@ h1 {
 }
 
 .temtem-evolutions-wrapper {
-  max-width: 600px;
+  max-width: 930px;
+  overflow: auto;
+  padding: 30px;
 }
+
 hr {
   width: 100%;
 }
