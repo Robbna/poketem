@@ -54,16 +54,20 @@ const handleSearch = async () => {
         <div class="temtem-card-wrapper">
           <TemtemCard :temtem="temtemFound" />
         </div>
-        <h1>Evolutions</h1>
-        <hr />
-        <div v-if="temtemFound.evolution.evolves" class="temtem-evolutions-wrapper flex gap-6">
-          <TemtemCard
-            v-for="(temtemEvolution, index) in temtemFoundEvolutions"
-            :key="index"
-            :temtem="temtemEvolution"
-            showLevel
-            :level="temtemFound.evolution.evolutionTree[index].level"
-          />
+        <div v-if="temtemFound.evolution.evolves" class="flex flex-col gap-6">
+          <div>
+            <h1>Evolutions</h1>
+            <hr />
+          </div>
+          <div class="temtem-evolutions-wrapper flex gap-6">
+            <TemtemCard
+              v-for="(temtemEvolution, index) in temtemFoundEvolutions"
+              :key="index"
+              :temtem="temtemEvolution"
+              showLevel
+              :level="temtemFound.evolution.evolutionTree[index].level"
+            />
+          </div>
         </div>
       </div>
     </div>
