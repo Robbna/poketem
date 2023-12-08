@@ -67,7 +67,7 @@ const handleSearch = async () => {
         </div>
       </div>
     </div>
-    <h1>Type table</h1>
+    <h1>Type Chart</h1>
     <hr />
     <TemtemTypes />
   </div>
