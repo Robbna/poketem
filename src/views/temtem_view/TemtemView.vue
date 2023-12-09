@@ -2,22 +2,15 @@
 import TemtemCard from "@/views/temtem_view/components/temtem_card/TemtemCard.vue";
 import TemtemTypes from "@/views/temtem_view/components/temtem_types/TemtemTypes.vue";
 
-import { capitalize, onBeforeMount, ref } from "vue";
 import type { ITemtem } from "@/common/data/temtem";
+import { capitalize, onBeforeMount, ref } from "vue";
+import { useTemtem } from "@/stores/temtem";
+
+const { temtemList, searchTemtemByName } = useTemtem();
 
 const temtemNameForm = ref<string | null>(null);
 const temtemFound = ref<ITemtem | null>(null);
 const temtemFoundEvolutions = ref<ITemtem[]>([]);
-
-const temtemList = ref<ITemtem[]>([]);
-onBeforeMount(async () => {
-  const response = await fetch("https://temtem-api.mael.tech/api/temtems");
-  temtemList.value = await response.json();
-});
-
-const searchTemtemByName = (temtemName: string): ITemtem | null => {
-  return temtemList.value.find((temtem) => temtem.name === temtemName) ?? null;
-};
 
 const handleSearch = async () => {
   const temtemName = temtemNameForm.value;
