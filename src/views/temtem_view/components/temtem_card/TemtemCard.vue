@@ -12,89 +12,75 @@ interface IPropsTemtemCard {
 const props = defineProps<IPropsTemtemCard>();
 
 const showLumaImage = ref(false);
-
-const handleLumaButton = () => {
-  showLumaImage.value = !showLumaImage.value;
-};
 </script>
 <template>
   <div class="temtem-card">
-    <div>
+    <header>
       <h1 class="temtem-name">{{ props.temtem.name }}</h1>
       <h3 v-if="props.showLevel">→ + {{ props.level }} lvl →</h3>
-      <h4 class="temtem-name"># {{ props.temtem.number }}</h4>
-    </div>
-    <div>
-      <div>
-        <div class="temtem-image-wrapper">
-          <img
-            class="temtem-image normal"
-            :style="{ opacity: showLumaImage ? 0 : 1 }"
-            :src="props.temtem.wikiRenderAnimatedUrl"
-            :alt="`${props.temtem.name} image`"
-          />
-          <img
-            class="temtem-image luma"
-            :style="{ opacity: showLumaImage ? 1 : 0 }"
-            :src="props.temtem.wikiRenderAnimatedLumaUrl"
-            :alt="`${props.temtem.name} image`"
-          />
-        </div>
-        <div class="flex flex-col w-full gap-2">
-          <p
-            v-for="(type, index) in props.temtem.types"
-            :key="index"
-            :class="`temtem-type ${type.toLowerCase()}`"
-          >
-            {{ type }}
-          </p>
-        </div>
-        <hr class="m-3" />
+      <h4 class="temtem-level"># {{ props.temtem.number }}</h4>
+    </header>
+    <div class="flex flex-col gap-3">
+      <div class="temtem-image-wrapper">
+        <img
+          class="temtem-image normal"
+          :style="{ opacity: showLumaImage ? 0 : 1 }"
+          :src="props.temtem.wikiRenderAnimatedUrl"
+          :alt="`${props.temtem.name} image`"
+        />
+        <img
+          class="temtem-image luma"
+          :style="{ opacity: showLumaImage ? 1 : 0 }"
+          :src="props.temtem.wikiRenderAnimatedLumaUrl"
+          :alt="`${props.temtem.name} image`"
+        />
       </div>
-      <div class="flex items-center justify-around">
-        <button @click="handleLumaButton" class="luma-button">Luma version</button>
+      <div class="flex flex-col gap-2">
+        <p
+          v-for="(type, index) in props.temtem.types"
+          :key="index"
+          :class="`temtem-type ${type.toLowerCase()}`"
+        >
+          {{ type }}
+        </p>
+      </div>
+      <footer class="flex items-center gap-1 justify-between">
+        <label class="luma-button-wrapper flex gap-2 items-center justify-center">
+          <span>✨Luma✨</span>
+          <input class="luma-button" type="checkbox" v-model="showLumaImage" />
+        </label>
         <small class="temtem-wiki-url">
-          <a :href="props.temtem.wikiUrl">More info 🔍</a>
+          <a :href="props.temtem.wikiUrl">Wiki</a>
         </small>
-      </div>
+      </footer>
     </div>
   </div>
 </template>
 
 <style scoped>
-h1 {
+.temtem-name,
+.temtem-level {
+  text-align: center;
+}
+
+.temtem-name {
   font-size: 2rem;
-  text-align: center;
 }
 
-h3 {
-  font-size: 1.2rem;
-  text-align: center;
-  font-weight: bolder;
-}
-
-h4 {
+.temtem-level {
   font-size: 0.9rem;
-  text-align: center;
 }
-.luma-button {
+.luma-button-wrapper {
   background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
   color: white;
-  margin: 0.3rem;
   padding: 0.2rem 0.4rem;
   font-size: 0.9rem;
   border-radius: 7px;
   font-weight: 600;
   text-transform: uppercase;
 
-  box-sizing: border-box;
-
   text-shadow: 1px 1px 3px black;
   letter-spacing: 0.1rem;
-}
-
-.luma-button:active {
-  color: lightblue;
 }
 
 .temtem-card {
@@ -105,9 +91,11 @@ h4 {
   align-items: center;
   justify-content: space-between;
 
+  background-color: white;
+
   max-width: 300px;
   border-radius: 14px;
-  padding: 1rem;
+  padding: 0.6rem;
   box-shadow:
     rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
@@ -186,7 +174,7 @@ h4 {
 }
 
 .temtem-wiki-url {
-  font-size: 0.8rem;
-  margin: 0.3rem;
+  font-size: 0.9rem;
+  text-align: center;
 }
 </style>
