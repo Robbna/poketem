@@ -1,50 +1,36 @@
 <script setup lang="ts">
-import { onBeforeMount } from "vue";
+import { onBeforeMount, ref } from "vue";
 import { useTemtem } from "@/stores/temtem";
 
 const { fetchTemtemList } = useTemtem();
 
+const loadedData = ref(false);
+
 onBeforeMount(async () => {
   await fetchTemtemList();
+
+  loadedData.value = true;
 });
 </script>
 <template>
-  <nav class="flex justify-center">
-    <router-link class="router-link pokemon" to="/pokemon">POKEMON</router-link>
-    <router-link class="router-link temtem" to="/temtem">TEMTEM</router-link>
-  </nav>
-  <RouterView />
-  <div class="github-buble flex flex-col justify-center items-center">
-    <a href="https://github.com/Robbna/poketem">
-      <i class="fab fa-github"> </i>
-    </a>
+  <div v-if="!loadedData">
+    <BaseSpinner />
+  </div>
+  <div v-if="loadedData">
+    <nav class="flex justify-center">
+      <router-link class="router-link pokemon" to="/pokemon">POKEMON</router-link>
+      <router-link class="router-link temtem" to="/temtem">TEMTEM</router-link>
+    </nav>
+    <RouterView />
   </div>
 </template>
 
 <style scoped>
-.github-buble {
-  position: fixed;
-  bottom: 0.6rem;
-  left: 0.6rem;
-
-  font-size: 40px;
-
-  transition: transform 0.2s ease-in-out;
-
-  &:hover {
-    transform: scale(1.3);
-  }
-}
-
-nav {
-  position: sticky;
-  z-index: 999999;
-}
-
 .router-link {
   width: 100%;
   text-align: center;
-  padding: 1.3rem;
+  text-decoration: none;
+  padding: 1rem;
 
   font-weight: 900;
   letter-spacing: 0.3rem;
