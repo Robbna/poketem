@@ -2,12 +2,12 @@
 import { onBeforeMount, ref } from "vue";
 import { useTemtem } from "@/stores/temtem";
 
-const { fetchTemtemList } = useTemtem();
+const { fetchTemtemData } = useTemtem();
 
 const loadedData = ref(false);
 
 onBeforeMount(async () => {
-  await fetchTemtemList();
+  await fetchTemtemData();
 
   loadedData.value = true;
 });
