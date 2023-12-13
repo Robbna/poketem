@@ -23,6 +23,10 @@ export const useTemtem = defineStore("temtem", () => {
     // It checks the techniques of each Temtem against the raw list of techniques, adding any extra information available to the 'moreInfo' property of each technique.
     // This enhances the details associated with each Temtem's techniques.
     temtemList.value = temtemListRaw.map((temtem) => {
+      
+      // This section of code checks the techniques of each Temtem against the raw list of techniques.
+      // If a match is found, the technique is updated with the extra information available in the raw list.
+      // If no match is found, the technique is left as is.
       temtem.techniques = temtem.techniques.map((technique) => {
         const techniqueRaw = temtemTechniqueListRaw.find(
           (techniqueRaw) => techniqueRaw.name.trim().toLowerCase() === technique.name.trim().toLowerCase()
@@ -33,6 +37,10 @@ export const useTemtem = defineStore("temtem", () => {
         technique.moreInfo = techniqueRaw;
         return technique;
       });
+
+      // Sort the techniques by level of adquisition.
+      temtem.techniques.sort((a, b) => a.levels - b.levels);
+
       return temtem;
     });
   };

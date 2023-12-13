@@ -7,12 +7,7 @@ export interface ITemtem {
   wikiRenderAnimatedUrl: string;
   wikiRenderAnimatedLumaUrl: string;
   types: string[];
-  techniques: {
-    name: string;
-    source: string;
-    levels: number;
-    moreInfo: ITemtemTechnique;
-  }[];
+  techniques: ITemtemTechnique[];
   evolution: {
     evolves: boolean;
     evolutionTree: {
@@ -33,6 +28,12 @@ export interface ITemtem {
 }
 
 export interface ITemtemTechnique {
+  name: string;
+  source: string;
+  levels: number;
+  moreInfo: ITemtemTechniqueMoreInfo;
+}
+export interface ITemtemTechniqueMoreInfo {
   name: string;
   wikiUrl: string;
   type: string;
