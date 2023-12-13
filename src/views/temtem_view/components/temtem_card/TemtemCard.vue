@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import TemtemTechniqueDialog from "./temtem_techniques_dialog/TemtemTechniqueDialog.vue";
+
 import { ref } from "vue";
 
 import type { ITemtem } from "@/common/data/temtem";
@@ -49,6 +51,9 @@ const showLumaImage = ref(false);
           <span>✨Luma✨</span>
           <input class="luma-button" type="checkbox" v-model="showLumaImage" />
         </label>
+        <div>
+          <TemtemTechniqueDialog :temtem="props.temtem" />
+        </div>
         <small class="temtem-wiki-url">
           <a :href="props.temtem.wikiUrl">Wiki</a>
         </small>
@@ -58,6 +63,10 @@ const showLumaImage = ref(false);
 </template>
 
 <style scoped>
+footer {
+  min-height: 50px;
+}
+
 .temtem-name,
 .temtem-level {
   text-align: center;

@@ -25,7 +25,8 @@ const props = defineProps<IPropsTemtemEvolutions>();
 <style scoped>
 .evolutions-wrapper {
   max-width: 90vw;
-  overflow-x: auto;
+  overflow-x: scroll;
+  overflow-y: hidden;
   padding: 2.6rem;
 }
 </style>
