@@ -1,28 +1,26 @@
 <script setup lang="ts">
 import Dialog from "primevue/dialog";
-import TechniqueItem from "./technique_item/TechniqueItem.vue";
+import { ref } from "vue";
 
 import type { ITemtem } from "@/common/data/temtem";
 
-import { ref } from "vue";
-
-const dialogVisibility = ref(false);
-
-interface IPropsTemtemTechniqueList {
+interface IPropsTraitsDialog {
   temtem: ITemtem;
 }
 
-const props = defineProps<IPropsTemtemTechniqueList>();
+const props = defineProps<IPropsTraitsDialog>();
+
+const dialogVisibility = ref(false);
 </script>
 <template>
   <button class="open-dialog-button w-full" @click="() => (dialogVisibility = !dialogVisibility)">
-    Techniques
+    Traits
   </button>
 
   <Dialog
     v-model:visible="dialogVisibility"
     modal
-    :style="{ width: '90vw', maxWidth: '550px', maxHeight: '700px' }"
+    :style="{ width: '90vw', maxWidth: '500px', maxHeight: '600px' }"
     :pt="{
       mask: {
         style: 'backdrop-filter: blur(3px)'
@@ -31,16 +29,13 @@ const props = defineProps<IPropsTemtemTechniqueList>();
   >
     <template #container="{ closeCallback }">
       <header class="flex items-center justify-between my-1 p-6">
-        <h2 class="">Techniques</h2>
+        <h2 class="">Traits</h2>
         <button class="dialog-close-button" @click="closeCallback">❌</button>
       </header>
-      <div class="technique-list-wrapper p-6">
-        <div class="technique-list gap-4 flex flex-col">
-          <TechniqueItem
-            v-for="technique in props.temtem.techniques"
-            :key="technique.name"
-            :technique="technique"
-          />
+      <div class="trait-list-wrapper flex flex-col gap-6 p-6">
+        <div class="trait-list" v-for="(trait, index) in props.temtem.traits" :key="index">
+          <h1>{{ trait.name }}</h1>
+          <p>{{ trait.description }}</p>
         </div>
       </div>
     </template>
@@ -62,7 +57,7 @@ header {
   color: white;
 }
 
-.technique-list-wrapper {
+.trait-list-wrapper {
   position: relative;
 
   background-image: url("@/assets/temtem/card.png");

@@ -7,7 +7,6 @@ import { router } from "./router";
 import { createPinia } from "pinia";
 
 import PrimeVue from "primevue/config";
-
 import BaseSpinner from "./common/components/base_spinner/BaseSpinner.vue";
 
 declare module "@vue/runtime-core" {

@@ -7,7 +7,9 @@ export interface ITemtem {
   wikiRenderAnimatedUrl: string;
   wikiRenderAnimatedLumaUrl: string;
   types: string[];
+  catchRate: number;
   techniques: ITemtemTechnique[];
+  traits: ITemtemTrait[];
   evolution: {
     evolves: boolean;
     evolutionTree: {
@@ -54,4 +56,11 @@ export interface ITemtemTechniqueMoreInfo {
   description: string;
   effectText: string;
   synergyText: string;
+}
+
+export interface ITemtemTrait {
+  name: string;
+  wikiUrl: string;
+  description: string;
+  effect: string;
 }
