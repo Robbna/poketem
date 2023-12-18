@@ -8,7 +8,6 @@ const loadedData = ref(false);
 
 onBeforeMount(async () => {
   await fetchTemtemData();
-
   loadedData.value = true;
 });
 </script>
